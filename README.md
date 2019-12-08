@@ -40,6 +40,7 @@ Every time you wish to run tomyrisctl, you must run ``tomyrisctl.py`` with Pytho
 ## Troubleshooting
 
 > Help! tomyrisctl says "Unable to communicate with service" and/or I can't visit the webpage!
+
 If you used the install script:
 - Run `journalctl -u tomyris` to check for errors.
 Otherwise:
