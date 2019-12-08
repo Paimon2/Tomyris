@@ -29,7 +29,7 @@ First, run ``pip install -r requirements.txt`` to install Tomyris' requirements.
 
 Then, run ``python tomyriscore.py`` once to allow it to generate the configuration file.
 
-Next, fill in `config.txt` with your database information.
+Next, fill in `config.txt` with your database information (example below).
 
 ![Next, fill in `config.txt` with your database information.](imgs/example_config.png)
 
