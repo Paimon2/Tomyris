@@ -43,5 +43,7 @@ Every time you wish to run tomyrisctl, you must run ``tomyrisctl.py`` with Pytho
 
 If you used the install script:
 - Run `journalctl -u tomyris` to check for errors.
+
 Otherwise:
+
 - Check `tomyris.log` for errors.
