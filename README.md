@@ -32,7 +32,7 @@ You'll need to run ``python tomyris_core.py`` manually for as long as you want T
 If you're not using the install script, run ``python tomyris_core.py`` once to allow it to generate the configuration file.
 
 
-![Then, fill in `config.txt` with your database information.](docs/example_config.png)
+![Then, fill in `config.txt` with your database information.](imgs/example_config.png)
 
 Every time you wish to run tomyrisctl, you must run ``tomyrisctl.py`` with Python and that'll open up tomyrisctl for you.
 
