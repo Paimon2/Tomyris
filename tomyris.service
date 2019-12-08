@@ -1,0 +1,14 @@
+[Unit]
+Description=An intelligent camera-based alarm system with a web interface
+After=network.target
+StartLimitIntervalSec=0
+
+[Service]
+Type=simple
+Restart=always
+RestartSec=5
+ExecStart=python /opt/tomyris/tomyriscore.py
+RestartPreventExitStatus=1
+
+[Install]
+WantedBy=multi-user.target
