@@ -27,14 +27,14 @@ On other operating systems, or if you're rebellious/can't use systemd, get ready
 
 First, run ``pip install -r requirements.txt`` to install Tomyris' requirements.
 
-You'll need to run ``python tomyris_core.py`` manually for as long as you want Tomyris to operate (hold up - see below!).
+Then, run ``python tomyriscore.py`` once to allow it to generate the configuration file.
 
-If you're not using the install script, run ``python tomyris_core.py`` once to allow it to generate the configuration file.
+Next, fill in `config.txt` with your database information.
 
-Then, fill in `config.txt` with your database information.
+![Next, fill in `config.txt` with your database information.](imgs/example_config.png)
 
-![Then, fill in `config.txt` with your database information.](imgs/example_config.png)
 
+Tomyris should now be configured. You'll need to run ``python tomyriscore.py`` manually for as long as you want Tomyris to operate.
 Every time you wish to run tomyrisctl, you must run ``tomyrisctl.py`` with Python and that'll open up tomyrisctl for you.
 
 ## Troubleshooting
