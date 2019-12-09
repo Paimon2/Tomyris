@@ -77,7 +77,10 @@ The default web password is ``admin``. It is highly recommended you change this.
 To change it, type ``web passwd [password]``, where ``[password]`` is the new password you wish to use.
 
 ### Adding your first camera
-Run ``camera add [name] [URL]`` where `[name]` and `[URL]` are a user-defined name and feed URL (e.g. rtsp://192.168.178.20/ch04) respectively.
+Run ``camera add [name] [URL]`` where `[name]` and `[URL]` are a user-defined 
+name and feed URL (e.g. rtsp://192.168.178.20/ch04) respectively.
+
+Repeat this process for every camera you wish to add.
 
 ### Adding vertical exclusion zones (optional)
 
