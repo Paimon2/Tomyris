@@ -123,7 +123,7 @@ Tomyris should now be configured.
 
 You should be able to visit the webserver on ``[machine's IP address]:80`` (e.g ``127.0.0.1:80``).
 
-To view events, click the bell once logged in to webserver.
+To view events, click the bell once logged in to the webserver.
 
 ## Troubleshooting
 
@@ -144,5 +144,6 @@ Otherwise:
 ![Structure](docs/basic-structure.png)
 
 ## Import chain
+> This will be changed to a UML dependency diagram soon™.
 
 ![Import chain](docs/importchain.png)
