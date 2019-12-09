@@ -16,7 +16,7 @@ Features include:
 
 At the very basic level, Tomyris contains *tomyriscore* and *tomyrisctl*:
 
-![Components](imgs/corevsctl.png)
+![Components](docs/corevsctl.png)
 
 *tomyrisctl* is an interactive command-line tool used to configure Tomyris.
 
@@ -48,7 +48,7 @@ Then, run ``python tomyriscore.py`` once to allow it to generate the configurati
 
 Next, fill in `config.txt` with your database information (example below).
 
-![Next, fill in `config.txt` with your database information.](imgs/example_config.png)
+![Next, fill in `config.txt` with your database information.](docs/example_config.png)
 
 Run ``python tomyriscore.py``. It will then attempt to connect and if connection is successful, it will encrypt your credentials.
 
@@ -141,4 +141,8 @@ Otherwise:
 
 ## Structure
 
-![Structure](imgs/basic-structure.png)
+![Structure](docs/basic-structure.png)
+
+## Import chain
+
+![Import chain](docs/importchain.png)
