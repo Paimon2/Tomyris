@@ -138,7 +138,6 @@ Otherwise:
 
 - Check `tomyris.log` for errors.
 
-
 ## Structure
 
 ![Structure](docs/basic-structure.png)
