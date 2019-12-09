@@ -52,7 +52,7 @@ Next, fill in `config.txt` with your database information (example below).
 
 Run ``python tomyriscore.py``. It will then attempt to connect and if connection is successful, it will encrypt your credentials.
 
-Tomyris should now be configured. You'll need to run ``python tomyriscore.py`` manually for as long as you want Tomyris to operate.
+Tomyris should now be installed. You'll need to run ``python tomyriscore.py`` manually for as long as you want Tomyris to operate.
 Every time you wish to run tomyrisctl, you must run ``tomyrisctl.py`` with Python and that'll open up tomyrisctl for you.
 
 ## Configuration
