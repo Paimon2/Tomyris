@@ -79,7 +79,7 @@ To change it, type ``web passwd [password]``, where ``[password]`` is the new pa
 ### Adding your first camera
 Run ``camera add [name] [URL]`` where `[name]` and `[URL]` are a user-defined name and feed URL (e.g. rtsp://192.168.178.20/ch04) respectively.
 
-## Adding vertical exclusion zones (optional)
+### Adding vertical exclusion zones (optional)
 
 Tomyris currently only supports excluding a vertical portion of the image for analysis.
 If you need more advanced functionality, feel free to make a pull request or use a post-processor.
