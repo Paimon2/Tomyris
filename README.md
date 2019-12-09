@@ -144,6 +144,6 @@ Otherwise:
 ![Structure](docs/basic-structure.png)
 
 ## Import chain
-> This will be changed to a UML dependency diagram soon™.
+> This will be changed to a UML dependency diagram soon.
 
 ![Import chain](docs/importchain.png)
