@@ -15,7 +15,8 @@ MySQL 15.0 or newer is recommended for the database.
 ### On Linux (systemd)
 > This is the recommended method if you have systemd installed.
 
-Run `chmod a+x install.sh` then `./install.sh` with root privileges if you wish to install Tomyris as a systemd service.
+Run [`install.sh`](https://raw.githubusercontent.com/UltraFuture7000/Tomyris/master/install.sh) with root privileges if you wish to install Tomyris as a systemd service.
+You do not need to clone the repository for this.
 
 This should walk you through everything.
 
@@ -24,6 +25,8 @@ After installation, Tomyris' files will reside in ``/opt/tomyris`` and you can u
 ### Other operating systems/no systemd
 
 On other operating systems, or if you're rebellious/can't use systemd, get ready; things are a little rougher.
+
+You'll need to clone the repository first.
 
 First, run ``pip install -r requirements.txt`` to install Tomyris' requirements.
 
