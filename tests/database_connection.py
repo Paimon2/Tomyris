@@ -6,7 +6,6 @@ import unittest
 import database
 
 
-
 class TestDatabaseFunctionality(unittest.TestCase):
 
     def test_connection(self):
