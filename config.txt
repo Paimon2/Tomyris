@@ -1,7 +1,0 @@
-[Database]
-
-Host = localhost
-Port = 3306
-User = tomyrisuser
-Password = hunter2
-Name = tomyris
