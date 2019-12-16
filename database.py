@@ -32,7 +32,6 @@ def load_config():
         _config.read("config.txt")
 
 
-
 def connect():
     """Connects to the database using info specified in config.txt.
 

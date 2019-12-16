@@ -17,5 +17,6 @@ class TestDatabaseFunctionality(unittest.TestCase):
         self.assertEqual(database.connect(), 0)
         self.assertEqual(database.connect(), 2)
 
+
 if __name__ == '__main__':
     unittest.main()
