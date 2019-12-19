@@ -10,6 +10,10 @@ import os
 
 
 def ls_in_directory(path):
+    """List all scripts (.py files) in a directory.
+
+    This returns a List object (you guessed it).
+    Just pass the path."""
     for file in os.listdir(path):
         if file.endswith(".py"):
             print(file)
