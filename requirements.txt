@@ -1,5 +1,8 @@
 opencv-python
 psutil
+cvlib
+matplotlib
+tensorflow
 flask_autoindex
 flask
 requests

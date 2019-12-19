@@ -11,7 +11,6 @@ def get_path():
     return os.path.dirname(os.path.realpath(__file__)) + os.sep
 
 
-
 class TestMotionDetectorFunctionality(unittest.TestCase):
 
     def test_motion_detector(self):
@@ -25,6 +24,7 @@ class TestMotionDetectorFunctionality(unittest.TestCase):
         two = cv2.imread(get_path() + "motion1.png")
         result = motion.get_confidence_score(one, two)
         self.assertEqual(result, 0)
+
 
 if __name__ == '__main__':
     unittest.main()

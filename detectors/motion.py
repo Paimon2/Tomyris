@@ -29,6 +29,7 @@ def preprocess_frame(frame):
     gray = cv2.GaussianBlur(gray, (21, 21), 0)
     return gray
 
+
 def get_confidence_score(prev, curr):
     prev = preprocess_frame(prev)
     curr = preprocess_frame(curr)
