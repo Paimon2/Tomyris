@@ -3,25 +3,34 @@ The source code below consists of collated and modified snippets from:
 https://www.pyimagesearch.com/2015/05/25/basic-motion-detection-and-tracking-with-python-and-opencv/
 """
 
-"""
---START DETECTOR SETTINGS--
-
-Modify the values below to as you see fit.
-"""
-
-
-min_contour_area = 40  # Minimum area of contour to classify as high-confidence
-
-# --END DETECTOR SETTINGS--
-
 import time
 import numpy as np
 import imutils
+import sys
+import os
 import cv2
 import datetime
 import imutils
-import cv2
 
+sys.path.insert(0, os.path.abspath(os.path.join(os.path.dirname(__file__), '..')))
+
+import database
+
+min_contour_area = 0
+
+def get_detector_settings():
+    """REQUIRED function.
+
+    ../analyser.py will ask this detector what settings can be
+    customised. These will be added to the database.
+
+    This must return a List.
+    """
+    return ["min_contour_area"]
+
+def set_local_settings_from_detector():
+    min_contour_area = int(database.get_detector_setting("motion",
+                                                         "min_contour_area"))
 
 def preprocess_frame(frame):
     frame = imutils.resize(frame, width=500)
@@ -31,6 +40,9 @@ def preprocess_frame(frame):
 
 
 def get_confidence_score(prev, curr):
+    """REQUIRED function.
+
+    """
     prev = preprocess_frame(prev)
     curr = preprocess_frame(curr)
     # Compute the diff between prev and curr

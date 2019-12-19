@@ -55,7 +55,9 @@ def connect():
             logger.critical("Unable to connect to the database!")
             logger.critical(e)
             return 1
+        logger.info("Connected to the database successfully.")
         return 0  # Connection successful
+    logger.warn("Already connected to the database; 2nd connection attempted?")
     return 2  # Already connected (_db != None)
 
 
@@ -63,6 +65,7 @@ def disconnect():
     """ "Disconnect" from the database.
     This can be run even if we are not connected anyway.
     """
+    logger.info("Disconnecting from the database!")
     global _db
     _db = None
     _cursor = None
@@ -92,6 +95,34 @@ def get_db():
     if not _db:
         connect()
     return _db
+
+
+def table_exists(table_name):
+    """Does a table exist?"""
+    try:
+        _cursor.execute("SELECT 1 FROM " + table_name + " LIMIT 1;")
+    except pymysql.err.ProgrammingError:
+        return False
+    return True
+
+
+def create_table(name, params):
+    """Create a table with the parameters specified.
+
+    Brackets must be included in the parameters."""
+    logger.info("Creating table " + name + "!")
+    _cursor.execute('CREATE TABLE ' + name + ' ' + params + ';')
+
+
+def delete_table(name):
+    logger.info("Deleting table " + name + "!")
+    cur.execute('DROP TABLE ' + name + ' ;')
+
+
+def get_detector_setting(detector_name, setting):
+    pass
+
+
 
 
 load_config()

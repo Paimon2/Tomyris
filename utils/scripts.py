@@ -14,6 +14,9 @@ def ls_in_directory(path):
 
     This returns a List object (you guessed it).
     Just pass the path."""
+    scripts_list = []
     for file in os.listdir(path):
         if file.endswith(".py"):
-            print(file)
+            temp_file = file.replace(".py", "")
+            scripts_list.append(temp_file)
+    return scripts_list
