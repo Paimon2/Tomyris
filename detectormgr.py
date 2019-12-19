@@ -55,6 +55,16 @@ def import_detectors():
 
 
 def setup_detectors():
+    """Set-up the detectors for use by other modules.
+
+    1. Verify they are valid by ensuring they have the required functions.
+    2. Ensure settings for the detectors exist in the detector_settings table.
+    3a. If they don't, get the settings and create them.
+    4. Verify the files haven't changed by computing their MD5 hash.
+    4a. If they have, clear all settings.
+    4b. In addition to clearing settings, scan all settings and add new ones.
+    TODO: Implement this!
+    """
     pass
 
 
