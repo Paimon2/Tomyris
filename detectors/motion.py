@@ -45,3 +45,4 @@ def get_confidence_score(prev, curr):
         if cv2.contourArea(c) < min_contour_area:
             continue
         return 1  # Always return max value; motion can't be expressed a %?
+    return 0  # No contours with min contour size
