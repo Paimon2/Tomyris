@@ -116,13 +116,29 @@ def create_table(name, params):
 
 def delete_table(name):
     logger.info("Deleting table " + name + "!")
-    cur.execute('DROP TABLE ' + name + ' ;')
+    _cursor.execute('DROP TABLE ' + name + ' ;')
 
 
 def get_detector_setting(detector_name, setting):
-    pass
+    """Fetch a specified setting from the detector_settings table.
+    
+    An example of what the table would look like is below.
 
+    ||||||TABLE: detector_settings|||||||
+    | name   |  setting         | value
+    |--------|------------------|-------|
+    | motion | min_contour_size | "40"  |
+    |--------|------------------|-------|
+    | ex1    | ex_setting_1     | "260" |
+    |--------|------------------|-------|
+    | ex2    | ex_setting_2     | "hi"  |
+    |--------|------------------|-------|"""
+    _cursor.execute("SELECT value FROM detector_settings WHERE name = %s"
+                    "AND setting = %s",
+                    (detector_name, setting))
+    return cur.fetchone()["value"])
 
-
+def set_detector_setting(detector_name, setting, value):
+    pass  # TODO
 
 load_config()

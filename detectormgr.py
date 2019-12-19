@@ -59,10 +59,11 @@ def setup_detectors():
 
 
 def get_detectors():
+    """Returns a list of detectors for use in other modules.
+    """
     return _detectors
 
 
 import_detectors()
-# setup_detectors()
-
+setup_detectors()
 
