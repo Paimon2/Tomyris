@@ -1,8 +1,8 @@
 # Tomyris
-Named after an ancient Messagetean queen, Tomyris is an intelligent camera feed analyser with a web interface. 
+Named after an ancient Messagetean queen, Tomyris is an intelligent camera-based alarm system with a web interface. 
 
-That being said, it's a camera *feed* analyser. It just analyses feeds, detects things that 
-are out of the ordinary and notifies you. It's not a  complete DVR/NVR solution, meaning it doesn't record feeds at all.
+That being said, it's an *alarm system*. It just analyses feeds, detects things that 
+are out of the ordinary and notifies you. While recording functionality may be added in the future, it's not a  complete DVR/NVR solution, meaning it doesn't record feeds at all.
 
 Features include:
 
