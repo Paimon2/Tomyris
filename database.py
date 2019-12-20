@@ -98,7 +98,10 @@ def get_db():
 
 
 def table_exists(table_name):
-    """Does a table exist?"""
+    """Does a table exist?
+    No, literally. That's it.
+    True if it does, False if it doesn't.
+    """
     try:
         _cursor.execute("SELECT 1 FROM " + table_name + " LIMIT 1;")
     except pymysql.err.ProgrammingError:
@@ -115,30 +118,57 @@ def create_table(name, params):
 
 
 def delete_table(name):
+    """Deletes the table with the specified name.
+    Simple as that.
+    """
     logger.info("Deleting table " + name + "!")
     _cursor.execute('DROP TABLE ' + name + ' ;')
 
 
+def create_detectors_table():
+    """
+    """
+    if table_exists("detector_settings"):
+        logger.warning("detector_settings already exists!")
+        logger.warning("That table will not be created again.")
+        return
+    create_table("detector_settings",
+                 "(name varchar(64),"
+                 "value varchar(128),"
+                 "enabled tinyint)")
+
+
+def create_entry_for_detector(name, setting, value):
+    """
+    Creates a
+    """
+    _cursor.execute("INSERT INTO detector_settings (name, value, enabled)"
+                    "VALUES ('%s', '%s', %s,)",
+                    (name, setting, value))
+
+
 def get_detector_setting(detector_name, setting):
     """Fetch a specified setting from the detector_settings table.
-    
+
     An example of what the table would look like is below.
 
     ||||||TABLE: detector_settings|||||||
-    | name   |  setting         | value
-    |--------|------------------|-------|
-    | motion | min_contour_size | "40"  |
-    |--------|------------------|-------|
-    | ex1    | ex_setting_1     | "260" |
-    |--------|------------------|-------|
-    | ex2    | ex_setting_2     | "hi"  |
-    |--------|------------------|-------|"""
+    | name   |  setting         | value | enabled
+    |--------|------------------|-------|---------|
+    | motion | min_contour_size | "40"  |    1
+    |--------|------------------|-------|---------|
+    | ex1    | ex_setting_1     | "260" |    0    |
+    |--------|------------------|-------|---------|
+    | ex2    | ex_setting_2     | "hi"  |    1    |
+    |--------|------------------|-------|---------|"""
     _cursor.execute("SELECT value FROM detector_settings WHERE name = %s"
                     "AND setting = %s",
                     (detector_name, setting))
-    return cur.fetchone()["value"]
+    return _cursor.fetchone()["value"]
+
 
 def set_detector_setting(detector_name, setting, value):
     pass  # TODO
+
 
 load_config()
