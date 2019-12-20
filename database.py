@@ -139,8 +139,12 @@ def create_detectors_table():
 
 
 def create_entry_for_detector(name, setting, value):
-    """
-    Creates a
+    """Creates an entry for a detector in the detector_settings table.
+
+    name (str): The name of the detector (without the .py extension, of course)
+    setting (str): The name of the setting that can be changed
+    By default, the enabled value (int) will always be set to 1.
+    This can be changed with tomyrisctl.
     """
     _cursor.execute("INSERT INTO detector_settings (name, value, enabled)"
                     "VALUES ('%s', '%s', %s,)",
