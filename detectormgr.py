@@ -76,4 +76,3 @@ def get_detectors():
 
 import_detectors()
 setup_detectors()
-

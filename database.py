@@ -128,7 +128,7 @@ def delete_table(name):
 def create_detectors_table():
     """Creates the detector_settings table.
 
-    Will silently fail if table already exists.
+    Will silently (log) fail if table already exists.
 
     We don't really need a table to represent detectors.
     (Detectors will just be loaded from the detectors/ directory.)
@@ -168,7 +168,7 @@ def get_detector_setting(detector_name, setting):
     |--------|------------------|-------|---------|
     | motion | min_contour_size | "40"  |    1
     |--------|------------------|-------|---------|
-    | ex1    | ex_setting_1     | "260" |    0    |
+    | motion | hash             | "260" |    0    |
     |--------|------------------|-------|---------|
     | ex2    | ex_setting_2     | "hi"  |    1    |
     |--------|------------------|-------|---------|"""
@@ -183,7 +183,7 @@ def set_detector_setting(detector_name, setting, value):
 
     NOTE: ALL THREE parameters (detector_name, setting and value)
     MUST BE strs.
-   
+
     An example of what the table would look like is below.
 
     ||||||TABLE: detector_settings|||||||

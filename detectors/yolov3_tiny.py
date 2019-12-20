@@ -16,6 +16,7 @@ logger = logging.getLogger(__name__)
 
 _min_confidence = None
 
+
 def get_detector_settings():
     """REQUIRED function.
 
@@ -31,6 +32,7 @@ def set_local_settings_from_detector():
     global _min_confidence
     _min_confidence = int(database.get_detector_setting("yolov3_tiny",
                                                         "min_confidence"))
+
 
 def get_objects_of_interest(frame):
     """REQUIRED function.
