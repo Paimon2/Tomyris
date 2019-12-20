@@ -26,4 +26,14 @@ def get_objects_of_interest(frame):
     is formatted like this:
     (object_name, object_type, object_confidence)
     """
-    pass
+    objects_of_interest = []
+    bbox, label, conf = cv.detect_common_objects(frame, confidence=0.2, model='yolov3-tiny')
+    print(bbox, label, conf)
+
+    # draw bounding box over detected objects
+    out = draw_bbox(frame, bbox, label, conf, write_conf=True)
+
+    # display output
+    cv2.imshow("Real-time object detection", out)
+    # press "Q" to stop
+    cv2.waitKey(1000000)
