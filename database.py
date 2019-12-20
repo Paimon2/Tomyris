@@ -62,7 +62,7 @@ def connect():
 
 
 def disconnect():
-    """ "Disconnect" from the database.
+    """"Disconnect" from the database.
     This can be run even if we are not connected anyway.
     """
     logger.info("Disconnecting from the database!")
@@ -128,6 +128,8 @@ def delete_table(name):
 def create_detectors_table():
     """Creates the detector_settings table.
 
+    Will silently fail if table already exists.
+
     We don't really need a table to represent detectors.
     (Detectors will just be loaded from the detectors/ directory.)
     We just represent their settings instead, including whether
@@ -179,11 +181,11 @@ def get_detector_setting(detector_name, setting):
 def set_detector_setting(detector_name, setting, value):
     """Set a specified setting from the detector_settings table.
 
-    An example of what the table would look like is below.
-
     NOTE: ALL THREE parameters (detector_name, setting and value)
     MUST BE strs.
    
+    An example of what the table would look like is below.
+
     ||||||TABLE: detector_settings|||||||
     | name   |  setting         | value | enabled
     |--------|------------------|-------|---------|
