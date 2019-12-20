@@ -12,5 +12,18 @@ import cv2
 from cvlib.object_detection import draw_bbox
 
 
-def get_confidence_score(prev, curr):
+def get_objects_of_interest(frame):
+    """REQUIRED function.
+
+    There are two options for getting a detector's results:
+    Either get_confidence_score() OR get_objects_of_interest()
+
+    get_confidence_score() must return a confidence level from 0.00 to 1.00.
+    This represents how confident the detector is that
+    something is out of the ordinary.
+
+    get_objects_of_interest() returns a list of tuples, where each object
+    is formatted like this:
+    (object_name, object_type, object_confidence)
+    """
     pass

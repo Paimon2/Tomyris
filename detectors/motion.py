@@ -18,6 +18,7 @@ import database
 
 min_contour_area = 0
 
+
 def get_detector_settings():
     """REQUIRED function.
 
@@ -28,9 +29,11 @@ def get_detector_settings():
     """
     return ["min_contour_area"]
 
+
 def set_local_settings_from_detector():
     min_contour_area = int(database.get_detector_setting("motion",
                                                          "min_contour_area"))
+
 
 def preprocess_frame(frame):
     frame = imutils.resize(frame, width=500)
@@ -42,6 +45,16 @@ def preprocess_frame(frame):
 def get_confidence_score(prev, curr):
     """REQUIRED function.
 
+    There are two options for getting a detector's results:
+    Either get_confidence_score() OR get_objects_of_interest()
+
+    get_confidence_score() must return a confidence level from 0.00 to 1.00.
+    This represents how confident the detector is that
+    something is out of the ordinary.
+
+    get_objects_of_interest() returns a list of tuples, where each object
+    is formatted like this:
+    (object_name, object_type, object_confidence)
     """
     prev = preprocess_frame(prev)
     curr = preprocess_frame(curr)

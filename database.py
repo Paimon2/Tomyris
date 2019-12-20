@@ -136,7 +136,7 @@ def get_detector_setting(detector_name, setting):
     _cursor.execute("SELECT value FROM detector_settings WHERE name = %s"
                     "AND setting = %s",
                     (detector_name, setting))
-    return cur.fetchone()["value"])
+    return cur.fetchone()["value"]
 
 def set_detector_setting(detector_name, setting, value):
     pass  # TODO
