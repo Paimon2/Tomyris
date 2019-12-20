@@ -16,7 +16,7 @@ sys.path.insert(0, os.path.abspath(os.path.join(os.path.dirname(__file__), '..')
 
 import database
 
-min_contour_area = 0
+min_contour_area = None
 
 
 def get_detector_settings():
@@ -31,8 +31,9 @@ def get_detector_settings():
 
 
 def set_local_settings_from_detector():
-    min_contour_area = int(database.get_detector_setting("motion",
-                                                         "min_contour_area"))
+    global _min_contour_area
+    _min_contour_area = int(database.get_detector_setting("motion",
+                                                          "min_contour_area"))
 
 
 def preprocess_frame(frame):

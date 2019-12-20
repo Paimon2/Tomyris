@@ -9,8 +9,28 @@ file, You can obtain one at https://mozilla.org/MPL/2.0/.
 import sys
 import cvlib as cv
 import cv2
+import logging
 from cvlib.object_detection import draw_bbox
 
+logger = logging.getLogger(__name__)
+
+_min_confidence = None
+
+def get_detector_settings():
+    """REQUIRED function.
+
+    ../analyser.py will ask this detector what settings can be
+    customised. These will be added to the database.
+
+    This must return a List.
+    """
+    return ["min_contour_area"]
+
+
+def set_local_settings_from_detector():
+    global _min_confidence
+    _min_confidence = int(database.get_detector_setting("yolov3_tiny",
+                                                        "min_confidence"))
 
 def get_objects_of_interest(frame):
     """REQUIRED function.
@@ -26,9 +46,15 @@ def get_objects_of_interest(frame):
     is formatted like this:
     (object_name, object_type, object_confidence)
     """
+    global _min_confidence
+    if _min_confidence is None:  # Ensure _min_confidence != None
+        logger.error("Unable to fetch _min_confidence from the database!")
+        logger.error("_min_confidence was None!")
+        logger.warning("Falling back to default confidence of 0.25.")
+        _min_confidence = 0.25
     objects_of_interest = []
     _, label, conf = cv.detect_common_objects(frame,
-                                              confidence=0.2,
+                                              confidence=_min_confidence,
                                               model='yolov3-tiny')
 
     for i in range(len(label)):  # Iterate over every object
