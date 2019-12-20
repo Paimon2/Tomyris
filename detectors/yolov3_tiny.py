@@ -32,7 +32,7 @@ def get_objects_of_interest(frame):
                                               model='yolov3-tiny')
 
     for i in range(len(label)):  # Iterate over every object
-        object_tuple = (label(i), "object", conf(i))
+        object_tuple = (label[i], "object", conf[i])
         objects_of_interest.append(object_tuple)
     # All objects should be in the list now...
     return objects_of_interest
