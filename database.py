@@ -126,7 +126,12 @@ def delete_table(name):
 
 
 def create_detectors_table():
-    """
+    """Creates the detector_settings table.
+
+    We don't really need a table to represent detectors.
+    (Detectors will just be loaded from the detectors/ directory.)
+    We just represent their settings instead, including whether
+    they are currently enabled or not.
     """
     if table_exists("detector_settings"):
         logger.warning("detector_settings already exists!")
@@ -165,14 +170,33 @@ def get_detector_setting(detector_name, setting):
     |--------|------------------|-------|---------|
     | ex2    | ex_setting_2     | "hi"  |    1    |
     |--------|------------------|-------|---------|"""
-    _cursor.execute("SELECT value FROM detector_settings WHERE name = %s"
-                    "AND setting = %s",
+    _cursor.execute("SELECT value FROM detector_settings WHERE name = '%s'"
+                    "AND setting = '%s';",
                     (detector_name, setting))
     return _cursor.fetchone()["value"]
 
 
 def set_detector_setting(detector_name, setting, value):
-    pass  # TODO
+    """Set a specified setting from the detector_settings table.
+
+    An example of what the table would look like is below.
+
+    NOTE: ALL THREE parameters (detector_name, setting and value)
+    MUST BE strs.
+   
+    ||||||TABLE: detector_settings|||||||
+    | name   |  setting         | value | enabled
+    |--------|------------------|-------|---------|
+    | motion | min_contour_size | "40"  |    1
+    |--------|------------------|-------|---------|
+    | ex1    | ex_setting_1     | "260" |    0    |
+    |--------|------------------|-------|---------|
+    | ex2    | ex_setting_2     | "hi"  |    1    |
+    |--------|------------------|-------|---------|"""
+    _cursor.execute("UPDATE detector_settings"
+                    "SET setting = '%s', value = '%s'"
+                    "WHERE name = '%s';",
+                    (detector_name, setting, value))
 
 
 load_config()
