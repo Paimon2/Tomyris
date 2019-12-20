@@ -27,13 +27,12 @@ def get_objects_of_interest(frame):
     (object_name, object_type, object_confidence)
     """
     objects_of_interest = []
-    bbox, label, conf = cv.detect_common_objects(frame, confidence=0.2, model='yolov3-tiny')
-    print(bbox, label, conf)
+    _, label, conf = cv.detect_common_objects(frame,
+                                              confidence=0.2,
+                                              model='yolov3-tiny')
 
-    # draw bounding box over detected objects
-    out = draw_bbox(frame, bbox, label, conf, write_conf=True)
-
-    # display output
-    cv2.imshow("Real-time object detection", out)
-    # press "Q" to stop
-    cv2.waitKey(1000000)
+    for i in range(len(label)):  # Iterate over every object
+        object_tuple = (label(i), "object", conf(i))
+        objects_of_interest.append(object_tuple)
+    # All objects should be in the list now...
+    return objects_of_interest
