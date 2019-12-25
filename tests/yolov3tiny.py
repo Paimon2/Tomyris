@@ -9,7 +9,7 @@ from detectors import yolov3_tiny
 def get_path():
     return os.path.dirname(os.path.realpath(__file__)) + os.sep
 
-class TestDatabaseFunctionality(unittest.TestCase):
+class TestYoloV3TinyFunctionality(unittest.TestCase):
 
     def test_cars(self):
         frame = cv2.imread(get_path() + "cars1.png")
