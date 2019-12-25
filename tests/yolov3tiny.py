@@ -11,10 +11,16 @@ def get_path():
 
 class TestDatabaseFunctionality(unittest.TestCase):
 
-    def test_people(self):
+    def test_cars(self):
         frame = cv2.imread(get_path() + "cars1.png")
         objs = yolov3_tiny.get_objects_of_interest(frame)
         self.assertGreater(len(objs), 4)
+
+    def test_people(self):
+        frame = cv2.imread(get_path() + "people1.png")
+        objs = yolov3_tiny.get_objects_of_interest(frame)
+        self.assertGreater(len(objs), 16)
+
 
 if __name__ == '__main__':
     unittest.main()
