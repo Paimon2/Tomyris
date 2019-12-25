@@ -34,6 +34,13 @@ def add_detector_to_database(name, params):
 
 
 def get_detectors_path_name():
+    """
+    Get the path to the detectors folder.
+
+    Assuming OS is Linux:
+    >>> get_detectors_path_name()
+    >>> "/detectors/"
+    """
     return os.sep + "detectors" + os.sep
 
 
@@ -45,8 +52,8 @@ def import_detectors():
     """Iterate over all files in detectors dir and import them.
 
     The way we do this is by adding each script to the _detectors dictionary,
-    where the key is the detector name and the value is the imported script,
-    which can be used inside the file.
+    where the key of the dictionary is the detector name and
+    the value is the imported script object, which can be used inside the file.
     """
     global _detectors
     _detectors = {}
