@@ -41,6 +41,12 @@ def get_detector_settings():
     """
     return ["min_confidence"]
 
+def initial_setup():
+    """REQUIRED function.
+
+    Set up anything for first-time use.
+    If you do not wish to use this function, include it but don't do anything."""
+    pass
 
 def set_local_settings_from_detector():
     global _min_confidence

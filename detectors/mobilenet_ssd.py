@@ -32,9 +32,11 @@ classes = ["background", "aeroplane", "bicycle",
            "person", "pottedplant", "sheep",
            "sofa", "train", "tvmonitor"]
 
+
 def get_path():
     return os.path.dirname(os.path.realpath(__file__)) + os.sep
-    
+
+ 
 def download_files():
     """Download files that are required by the
     MobileNet-SSD detector."""
@@ -121,6 +123,8 @@ def get_objects_of_interest(frame):
         # Get detection data
         confidence = detections[0, 0, i, 2]
         identifier = int(detections[0, 0, i, 1])
+        if classes[identifier] == "background":
+            continue
         box = detections[0, 0, i, 3:7] * np.array([w, h, w, h])
         """
         Now append our tuple!

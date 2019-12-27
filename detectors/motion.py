@@ -26,6 +26,14 @@ def get_name():
     return "Motion detector"
 
 
+def initial_setup():
+    """REQUIRED function.
+
+    Set up anything for first-time use.
+    If you do not wish to use this function, include it but don't do anything."""
+    pass
+
+
 def get_description():
     """REQUIRED function.
 
