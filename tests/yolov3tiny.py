@@ -14,11 +14,19 @@ class TestYoloV3TinyFunctionality(unittest.TestCase):
     def test_cars(self):
         frame = cv2.imread(get_path() + "cars1.png")
         objs = yolov3_tiny.get_objects_of_interest(frame)
+        print(objs)
+        print("Len: " + str(len(objs)))
+        for i in range(5):
+            print("")
         self.assertGreater(len(objs), 4)
 
     def test_people(self):
         frame = cv2.imread(get_path() + "people1.png")
         objs = yolov3_tiny.get_objects_of_interest(frame)
+        print(objs)
+        print("Len: " + str(len(objs)))
+        for i in range(5):
+            print("")
         self.assertGreater(len(objs), 16)
 
 

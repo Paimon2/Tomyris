@@ -18,6 +18,7 @@ class TestMobileNetSSDFunctionality(unittest.TestCase):
         mobilenet_ssd.initial_setup()
         objs = mobilenet_ssd.get_objects_of_interest(frame)
         print(objs)
+        print("Len: " + str(len(objs)))
         for i in range(5):
             print("")
         self.assertGreater(len(objs), 4)
@@ -27,6 +28,7 @@ class TestMobileNetSSDFunctionality(unittest.TestCase):
         mobilenet_ssd.initial_setup()
         objs = mobilenet_ssd.get_objects_of_interest(frame)
         print(objs)
+        print("Len: " + str(len(objs)))
         for i in range(5):
             print("")
         self.assertGreater(len(objs), 1)
