@@ -5,12 +5,15 @@ file, You can obtain one at https://mozilla.org/MPL/2.0/.
 
 © Omar Junaid
 """
+import logging
 import importlib
 import os
 import sys
 import hashlib
 import database
 from utils.scripts import ls_in_directory
+
+logger = logging.getLogger(__name__)
 
 _detectors = None
 
@@ -31,7 +34,7 @@ def does_detector_fn_exist(detector_name, function_name):
 def add_detector_to_database(name, params):
     if database.table_exists(name):  # Just in case!
         database.delete_table(name)
-
+    # TODO actually adding it
 
 def get_detectors_path_name():
     """
@@ -72,7 +75,8 @@ def setup_detectors():
     4b. In addition to clearing settings, scan all settings and add new ones.
     TODO: Implement this!
     """
-    pass
+    for detector in ls_in_directory(get_detectors_path()):
+        if not does_detector_fn_exist(detector, "get_name"): print("nexist")
 
 
 def get_detectors():
