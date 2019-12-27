@@ -32,14 +32,16 @@ classes = ["background", "aeroplane", "bicycle",
            "person", "pottedplant", "sheep",
            "sofa", "train", "tvmonitor"]
 
-
+def get_path():
+    return os.path.dirname(os.path.realpath(__file__)) + os.sep
+    
 def download_files():
     """Download files that are required by the
     MobileNet-SSD detector."""
     # Download the caffemodel, followed by the prototxt
-    downloader.download_file(scripts.get_path() + "MobileNetSSD.caffemodel",
+    downloader.download_file(get_path() + "MobileNetSSD.caffemodel",
                              "https://raw.githubusercontent.com/chuanqi305/MobileNet-SSD/master/mobilenet_iter_73000.caffemodel")
-    downloader.download_file(scripts.get_path() + "MobileNetSSD.prototxt",
+    downloader.download_file(get_path() + "MobileNetSSD.prototxt",
                              "https://raw.githubusercontent.com/chuanqi305/MobileNet-SSD/master/voc/MobileNetSSD_deploy.prototxt")
 
 
@@ -49,7 +51,7 @@ def initial_setup():
     Set up anything for first-time use.
     If you do not wish to use this function, include it but don't do anything."""
     # We can assume both files are missing if one is not present
-    if not os.path.isfile(scripts.get_path() + "MobileNetSSD.prototxt"):
+    if not os.path.isfile(get_path() + "MobileNetSSD.prototxt"):
         download_files()
 
 
@@ -100,9 +102,9 @@ def get_objects_of_interest(frame):
     """
     global _net
     if _net is None:
-        _net = cv2.dnn.readNetFromCaffe(scripts.get_path()
+        _net = cv2.dnn.readNetFromCaffe(get_path()
                                         + "MobileNetSSD.prototxt",
-                                        scripts.get_path()
+                                        get_path()
                                         + "MobileNetSSD.caffemodel")
     (h, w) = frame.shape[:2]
     # Construct a blob for our frame
