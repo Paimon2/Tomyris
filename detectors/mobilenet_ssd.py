@@ -36,7 +36,7 @@ classes = ["background", "aeroplane", "bicycle",
 def get_path():
     return os.path.dirname(os.path.realpath(__file__)) + os.sep
 
- 
+
 def download_files():
     """Download files that are required by the
     MobileNet-SSD detector."""
