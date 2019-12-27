@@ -7,16 +7,19 @@ file, You can obtain one at https://mozilla.org/MPL/2.0/.
 """
 
 import logging
+
+logger = logging.getLogger(__name__)
+
 import sys
 import os
 import cv2
+import numpy as np
 
 sys.path.insert(0, os.path.abspath(os.path.join(os.path.dirname(__file__), '..')))
 
 from utils import scripts
 from utils import downloader
 
-logger = logging.getLogger(__name__)
 
 _min_confidence = None
 _net = None
@@ -103,14 +106,14 @@ def get_objects_of_interest(frame):
                                         + "MobileNetSSD.caffemodel")
     (h, w) = frame.shape[:2]
     # Construct a blob for our frame
-    blob = cv2.dnn.blobFromImage(cv2.resize(image, (300, 300)),
+    blob = cv2.dnn.blobFromImage(cv2.resize(frame, (300, 300)),
                                  0.007843,
                                  (300, 300),
                                  127.5)
     _net.setInput(blob)
     objects_of_interest = []
     # Get the detections from the neural network
-    detections = net.forward()
+    detections = _net.forward()
     # TLDR: For each detection
     for i in np.arange(0, detections.shape[2]):
         # Get detection data
