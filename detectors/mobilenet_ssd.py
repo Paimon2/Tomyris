@@ -46,7 +46,7 @@ def initial_setup():
     Set up anything for first-time use.
     If you do not wish to use this function, include it but don't do anything."""
     # We can assume both files are missing if one is not present
-    if not os.path.isfile(get_path() + "MobileNetSSD.prototxt"):
+    if not os.path.isfile(scripts.get_path() + "MobileNetSSD.prototxt"):
         download_files()
 
 
@@ -98,9 +98,9 @@ def get_objects_of_interest(frame):
     global _net
     if _net is None:
         _net = cv2.dnn.readNetFromCaffe(scripts.get_path()
-                                        + "MobileNetSSD_deploy.prototxt.txt",
+                                        + "MobileNetSSD.prototxt",
                                         scripts.get_path()
-                                        + "MobileNetSSD_deploy.caffemodel")
+                                        + "MobileNetSSD.caffemodel")
     (h, w) = frame.shape[:2]
     # Construct a blob for our frame
     blob = cv2.dnn.blobFromImage(cv2.resize(image, (300, 300)),
@@ -117,4 +117,10 @@ def get_objects_of_interest(frame):
         confidence = detections[0, 0, i, 2]
         identifier = int(detections[0, 0, i, 1])
         box = detections[0, 0, i, 3:7] * np.array([w, h, w, h])
-
+        """
+        Now append our tuple!
+        Remember (see above):
+        (geometry, object_name, object_confidence)
+        """
+        objects_of_interest.append((box, classes[identifier], confidence))
+    return objects_of_interest
