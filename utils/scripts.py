@@ -20,3 +20,8 @@ def ls_in_directory(path):
             temp_file = file.replace(".py", "")
             scripts_list.append(temp_file)
     return scripts_list
+
+
+def get_path():
+    """Get the path to the current file."""
+    return os.path.dirname(os.path.realpath(__file__)) + os.sep

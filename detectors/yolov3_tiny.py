@@ -17,6 +17,20 @@ logger = logging.getLogger(__name__)
 _min_confidence = None
 
 
+def get_name():
+    """REQUIRED function.
+
+    Returns a human-readable string of the detector's name."""
+    return "YOLOv3-Tiny object detector"
+
+
+def get_description():
+    """REQUIRED function.
+
+    Returns a human-readable string of the detector's name."""
+    return "A faster, more power-efficient but less accurate object detector"
+
+
 def get_detector_settings():
     """REQUIRED function.
 
@@ -25,7 +39,7 @@ def get_detector_settings():
 
     This must return a List.
     """
-    return ["min_contour_area"]
+    return ["min_confidence"]
 
 
 def set_local_settings_from_detector():
@@ -46,7 +60,7 @@ def get_objects_of_interest(frame):
 
     get_objects_of_interest() returns a list of tuples, where each object
     is formatted like this:
-    (object_name, object_confidence)
+    (geometry, object_name, object_confidence)
     """
     global _min_confidence
     if _min_confidence is None:  # Ensure _min_confidence != None
@@ -55,12 +69,12 @@ def get_objects_of_interest(frame):
         logger.warning("Falling back to default confidence of 0.25.")
         _min_confidence = 0.25
     objects_of_interest = []
-    b, label, conf = cv.detect_common_objects(frame,
-                                              confidence=_min_confidence,
-                                              model='yolov3-tiny')
+    geometry, label, conf = cv.detect_common_objects(frame,
+                                                     confidence=_min_confidence,
+                                                     model='yolov3-tiny')
 
     for i in range(len(label)):  # Iterate over every object
-        object_tuple = (label[i], conf[i])
+        object_tuple = (geometry[i], label[i], conf[i])
         objects_of_interest.append(object_tuple)
     # All objects should be in the list now...
     return objects_of_interest

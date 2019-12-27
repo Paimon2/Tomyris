@@ -19,6 +19,20 @@ import database
 min_contour_area = None
 
 
+def get_name():
+    """REQUIRED function.
+
+    Returns a human-readable string of the detector's name."""
+    return "Motion detector"
+
+
+def get_description():
+    """REQUIRED function.
+
+    Returns a human-readable string of the detector's name."""
+    return "A simple detector that just looks for motion"
+
+
 def get_detector_settings():
     """REQUIRED function.
 
