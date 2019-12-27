@@ -3,6 +3,7 @@ psutil
 cvlib
 matplotlib
 tensorflow
+wget
 flask_autoindex
 flask
 requests

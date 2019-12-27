@@ -6,8 +6,10 @@ file, You can obtain one at https://mozilla.org/MPL/2.0/.
 © Omar Junaid
 """
 
+import logging
 import os
 
+logger = logging.getLogger(__name__)
 
 def ls_in_directory(path):
     """List all scripts (.py files) in a directory.
