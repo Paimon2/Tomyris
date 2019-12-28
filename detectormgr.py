@@ -65,6 +65,66 @@ def import_detectors():
         _detectors[detector] = importlib.import_module("detectors." + detector)
 
 
+def ensure_functions_are_valid():
+    """Verify functions for each detector are valid.
+
+    This includes checking the required functions exist
+    and their return types are valid.
+    """
+    # 1. Verify functions exist
+    for name in list(_detectors):
+        # Get the module object
+        module = _detectors[name]
+        # Verify get_name() exists
+        if not does_detector_fn_exist(module, "get_name"):
+            logger.error("Detector " + name + " could not be loaded.")
+            logger.error("It is missing the get_name() function!")
+            del _detectors[name]
+            continue
+        # Verify return type for get_name()
+        if type(module.get_name()) != str:
+            logger.error("Detector " + name + " could not be loaded.")
+            logger.error("The get_name() function has an invalid return type!")
+            logger.error("It should be a str.")
+            del _detectors[name]
+            continue
+        # Verify get_description() exists
+        if not does_detector_fn_exist(module, "get_description"):
+            logger.error("Detector " + name + " could not be loaded.")
+            logger.error("It is missing the get_description() function!")
+            del _detectors[name]
+            continue
+        # Verify return type for get_description()
+        if type(module.get_name()) != str:
+            logger.error("Detector " + name + " could not be loaded.")
+            logger.error("The get_description() function has an invalid return type!")
+            logger.error("It should be a str.")
+            del _detectors[name]
+            continue
+        # Verify get_detector_settings() exists
+        if not does_detector_fn_exist(module, "get_detector_settings"):
+            logger.error("Detector " + name + " could not be loaded.")
+            logger.error("It is missing the get_detector_settings() function!")
+            del _detectors[name]
+            continue
+        # Verify return type for get_detector_settings()
+        if type(module.get_detector_settings()) != list:
+            logger.error("Detector " + name + " could not be loaded.")
+            logger.error("The get_detector_settings() function has an invalid return type!")
+            logger.error("It should be a list of strings.")
+            del _detectors[name]
+            continue
+
+def do_database_setup():
+    """Set-up settings for each detector.
+
+    This includes:
+    - Ensuring their settings exist in the database
+    - Ensuring their MD5 hash exists
+    --- Compare the MD5 hashes first. If they differ, reset the settings.
+    """
+    pass
+
 def setup_detectors():
     """Set-up the detectors for use by other modules.
 
@@ -76,26 +136,7 @@ def setup_detectors():
     4b. In addition to clearing settings, scan all settings and add new ones.
     TODO: Implement this!
     """
-    # 1. Verify functions exist
-    for name in list(_detectors):
-        # Get the module object
-        module = _detectors[name]
-        # Verify get_name() exists
-        if not does_detector_fn_exist(module, "get_name"):
-            logger.error("Detector " + name + " could not be loaded.")
-            logger.error("It is missing the get_name() function!")
-            del _detectors[name]
-        # Verify get_description() exists
-        if not does_detector_fn_exist(module, "get_description"):
-            logger.error("Detector " + name + " could not be loaded.")
-            logger.error("It is missing the get_description() function!")
-            del _detectors[name]
-        # Verify get_detector_settings() exists
-        if not does_detector_fn_exist(module, "get_detector_settings"):
-            logger.error("Detector " + name + " could not be loaded.")
-            logger.error("It is missing the get_detector_settings() function!")
-            del _detectors[name]
-
+    ensure_functions_are_valid()
 
 def get_detectors():
     """Returns a list of detectors (their modules) for use in other modules.

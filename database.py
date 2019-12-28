@@ -163,15 +163,17 @@ def get_detector_setting(detector_name, setting):
 
     An example of what the table would look like is below.
 
+    "hash" is a required setting.
+    
     ||||||TABLE: detector_settings|||||||
-    | name   |  setting         | value | enabled
-    |--------|------------------|-------|---------|
-    | motion | min_contour_size | "40"  |    1
-    |--------|------------------|-------|---------|
-    | motion | hash             | "260" |    0    |
-    |--------|------------------|-------|---------|
-    | ex2    | ex_setting_2     | "hi"  |    1    |
-    |--------|------------------|-------|---------|"""
+    | name   |  setting         | value                              | enabled |
+    |--------|------------------|------------------------------------|---------|
+    | motion | min_contour_size | "40"                               |    1    |
+    |--------|------------------|------------------------------------|---------|
+    | motion | hash             | "cab08b36195edb1a1231d2d09fa450e0" |    0    |
+    |--------|------------------|------------------------------------|---------|
+    | ex2    | ex_setting_2     | "hi"                               |    1    |
+    |--------|------------------|------------------------------------|---------|"""
     _cursor.execute("SELECT value FROM detector_settings WHERE name = '%s'"
                     "AND setting = '%s';",
                     (detector_name, setting))
