@@ -115,6 +115,7 @@ def ensure_functions_are_valid():
             del _detectors[name]
             continue
 
+
 def do_database_setup():
     """Set-up settings for each detector.
 
@@ -124,6 +125,7 @@ def do_database_setup():
     --- Compare the MD5 hashes first. If they differ, reset the settings.
     """
     pass
+
 
 def setup_detectors():
     """Set-up the detectors for use by other modules.
@@ -137,6 +139,7 @@ def setup_detectors():
     TODO: Implement this!
     """
     ensure_functions_are_valid()
+
 
 def get_detectors():
     """Returns a list of detectors (their modules) for use in other modules.
