@@ -26,7 +26,7 @@ def does_detector_fn_exist(detector_name, function_name):
     This only checks if a specified function exists.
     Nothing less, nothing more."""
     try:
-        return callable(getattr(detector_name, function_name))
+        return getattr(detector_name, function_name)
     except AttributeError:
         return False
 
@@ -35,6 +35,7 @@ def add_detector_to_database(name, params):
     if database.table_exists(name):  # Just in case!
         database.delete_table(name)
     # TODO actually adding it
+
 
 def get_detectors_path_name():
     """
@@ -75,12 +76,29 @@ def setup_detectors():
     4b. In addition to clearing settings, scan all settings and add new ones.
     TODO: Implement this!
     """
-    for detector in ls_in_directory(get_detectors_path()):
-        if not does_detector_fn_exist(detector, "get_name"): print("nexist")
+    # 1. Verify functions exist
+    for name in list(_detectors):
+        # Get the module object
+        module = _detectors[name]
+        # Verify get_name() exists
+        if not does_detector_fn_exist(module, "get_name"):
+            logger.error("Detector " + name + " could not be loaded.")
+            logger.error("It is missing the get_name() function!")
+            del _detectors[name]
+        # Verify get_description() exists
+        if not does_detector_fn_exist(module, "get_description"):
+            logger.error("Detector " + name + " could not be loaded.")
+            logger.error("It is missing the get_description() function!")
+            del _detectors[name]
+        # Verify get_detector_settings() exists
+        if not does_detector_fn_exist(module, "get_detector_settings"):
+            logger.error("Detector " + name + " could not be loaded.")
+            logger.error("It is missing the get_detector_settings() function!")
+            del _detectors[name]
 
 
 def get_detectors():
-    """Returns a list of detectors for use in other modules.
+    """Returns a list of detectors (their modules) for use in other modules.
     """
     return _detectors
 
