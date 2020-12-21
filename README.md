@@ -1,4 +1,6 @@
 # Tomyris
+**This project has been abandoned and is incomplete**
+
 Named after an ancient Messagetean queen, Tomyris is an intelligent camera-based alarm system with a web interface. 
 
 That being said, it's an *alarm system*. It just analyses feeds, detects things that 
